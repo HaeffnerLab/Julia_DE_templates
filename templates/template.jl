@@ -21,6 +21,8 @@ saveat=0.1 # save the solution every 0.1 time units
 u0=SA[0.0,1.0] # initial conditions, velocity is 0.0, position is 1.0
 p=(ωsq=ω^2,) # parameters, ω^2 is precomputed for efficiency
 prob=ODEProblem(harmonic_oscillator,u0,tspan,p) # define the problem
+
+
 ##
 # define numerical parameters
 alg=Tsit5() # Tsit5 is Tsitouras 5/4 Runge-Kutta method. (free 4th order interpolant).
