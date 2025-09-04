@@ -6,7 +6,7 @@ using SphericalHarmonicExpansions
 
 ##
 @polyvar x y z # define polynomial variables
-# If you have your own fitted polynomical coefficients using Andris's codes, replace the following two lines with your own fitted polynomials by running:
+# If you have your own fitted polynomical coefficients from Andris's codes, replace the following two lines with your own fitted polynomials by running:
 # RF_c=SphericalHarmonicCoefficients(C)
 # RF_p = sphericalHarmonicsExpansion(c,x,y,z)
 RF_p=0.1*(x^2 - y^2)  # Replace it with your own fitted polynomial
