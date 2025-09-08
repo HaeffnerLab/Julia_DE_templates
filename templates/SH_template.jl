@@ -4,12 +4,10 @@ using CairoMakie
 using StaticArrays
 using SphericalHarmonicExpansions
 
-
-
 ##
 function oscillator(u, p, t)
     # t is the time variable, p is the parameters in named tuple form
-    vx,vy,vz,x,y,z= u # unpacking the state vector to v and x, velocity and position
+    v,x = u # unpacking the state vector to v (velocity) and x (position)
     dv=-p.ωsq*x # p. ωsq is ω^2, precomputed for efficiency 
     dx=v
     SA[dv,dx] # out-of-place version using StaticArrays to make if even faster than in-place version when the number of equations is small
@@ -39,7 +37,7 @@ progress=true # show progress bar or not
 
 ##
 sol=solve(prob,alg,abstol=abstol,reltol=reltol,saveat=saveat,progress=progress) # solve the problem
-
+println("Solution computed successfully!")
 
 ##
 fig=Figure(size=(900,400))
@@ -48,10 +46,11 @@ lines!(ax,sol.t,sol[1,:],label="velocity",color=:blue)
 ax2=Axis(fig[1,2],title="Harmonic Oscillator",xlabel="Time",ylabel="position")
 lines!(ax2,sol.t,sol[2,:],label="position",color=:red)
 fig
-
+println("Figure created successfully!")
 
 ##
 # Benchmark to see the allocations and time taken to solve the problem
 # If the function is OK, the allocations should be low and not scale with tspan.
 using BenchmarkTools
 @benchmark solve($prob,$alg,abstol=$abstol,reltol=$reltol,save_on=false) # solve the problem
+println("Benchmark completed successfully!")
